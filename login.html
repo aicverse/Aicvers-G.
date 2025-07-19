@@ -1,0 +1,29 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Login - AICVerse G</title>
+</head>
+<body>
+  <h1>Login to AICVerse G</h1>
+  <form id="login-form">
+    <input type="email" id="email" placeholder="Email" required><br>
+    <input type="password" id="password" placeholder="Password" required><br>
+    <button type="submit">Login</button>
+  </form>
+  <p>Don't have an account? <a href="signup.html">Sign up</a></p>
+  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js"></script>
+  <script>
+    const supabase = supabase.createClient('https://cnkjkublhqqsfryqjdwu.supabase.co', 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImNua2prdWJsaHFxc2ZyeXFqZHd1Iiwicm9sZSI6ImFub24iLCJpYXQiOjE3NTI5MjQ1NzIsImV4cCI6MjA2ODUwMDU3Mn0.BceVsKCoBby3wuk5uLJFgXzrDp2Aeo9kwnWRLV2elwg');
+
+    document.getElementById('login-form').addEventListener('submit', async function(e) {
+      e.preventDefault();
+      const email = document.getElementById('email').value;
+      const password = document.getElementById('password').value;
+      const { error, session } = await supabase.auth.signInWithPassword({ email, password });
+      if (error) alert('Login failed: ' + error.message);
+      else alert('Login successful!');
+    });
+  </script>
+</body>
+</html>
