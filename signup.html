@@ -4,93 +4,34 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>Sign Up - AICVerse G</title>
-  <style>
-    body {
-      font-family: Arial, sans-serif;
-      background-color: #121212;
-      color: #fff;
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      height: 100vh;
-      margin: 0;
-    }
-    .signup-container {
-      background-color: #1f1f1f;
-      padding: 30px;
-      border-radius: 10px;
-      box-shadow: 0 0 15px #ffb300;
-      width: 100%;
-      max-width: 400px;
-    }
-    h2 {
-      text-align: center;
-      color: #ffb300;
-    }
-    input {
-      width: 100%;
-      padding: 10px;
-      margin: 10px 0;
-      border: none;
-      border-radius: 5px;
-    }
-    button {
-      width: 100%;
-      padding: 10px;
-      background-color: #ffb300;
-      border: none;
-      color: black;
-      font-weight: bold;
-      border-radius: 5px;
-      cursor: pointer;
-    }
-    p {
-      text-align: center;
-      margin-top: 10px;
-    }
-    a {
-      color: #4ecdc4;
-    }
-  </style>
 </head>
 <body>
-  <div class="signup-container">
-    <h2>Sign Up to AICVerse G</h2>
-    <form id="signup-form">
-      <input type="text" id="username" placeholder="Username" required />
-      <input type="email" id="email" placeholder="Email" required />
-      <input type="password" id="password" placeholder="Password" required />
-      <button type="submit">Sign Up</button>
-    </form>
-    <p>Already have an account? <a href="login.html">Login</a></p>
-  </div>
-
+  <h2>Sign Up to AICVerse G</h2>
+  <form id="signup-form">
+    <input type="text" id="username" placeholder="Username" required />
+    <input type="email" id="email" placeholder="Email" required />
+    <input type="password" id="password" placeholder="Password" required />
+    <button type="submit">Sign Up</button>
+  </form>
+  <p>Already have an account? <a href="login.html">Login</a></p>
   <script type="module">
     import { createClient } from 'https://cdn.jsdelivr.net/npm/@supabase/supabase-js/+esm';
-
-    const supabaseUrl = 'https://cnkjkublhqqsfryqjdwu.supabase.co';
-    const supabaseKey = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImNua2prdWJsaHFxc2ZyeXFqZHd1Iiwicm9sZSI6ImFub24iLCJpYXQiOjE3NTI5MjQ1NzIsImV4cCI6MjA2ODUwMDU3Mn0.BceVsKCoBby3wuk5uLJFgXzrDp2Aeo9kwnWRLV2elwg';
-    const supabase = createClient(supabaseUrl, supabaseKey);
-
+    const supabase = createClient('https://cnkjkublhqqsfryqjdwu.supabase.co', 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9...');
     document.getElementById('signup-form').addEventListener('submit', async function(e) {
       e.preventDefault();
       const email = document.getElementById('email').value;
       const password = document.getElementById('password').value;
       const username = document.getElementById('username').value;
-
       const { data, error } = await supabase.auth.signUp({
         email,
         password,
-        options: {
-          data: { username: username }
-        }
+        options: { data: { username: username } }
       });
-
       if (error) {
         alert('Signup failed: ' + error.message);
       } else {
         alert('Signup successful!');
-        window.location.href = 'dashboard.html';
+        window.location.href = "mainpage.html";
       }
     });
   </script>

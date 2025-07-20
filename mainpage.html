@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>AICVerse Main Page</title>
+</head>
+<body>
+  <h1>🔥 Welcome to AICVerse G</h1>
+  <p>👤 Username: <span id="username">Loading...</span></p>
+  <p>📧 Email: <span id="email">Loading...</span></p>
+  <button onclick="logout()">Logout</button>
+  <script type="module">
+    import { createClient } from 'https://cdn.jsdelivr.net/npm/@supabase/supabase-js/+esm';
+    const supabase = createClient('https://cnkjkublhqqsfryqjdwu.supabase.co', 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9...');
+    async function loadProfile() {
+      const { data: { user } } = await supabase.auth.getUser();
+      if (!user) return window.location.href = 'login.html';
+      const { data, error } = await supabase.from('users').select('*').eq('id', user.id).single();
+      if (data) {
+        document.getElementById('username').textContent = data.username || 'N/A';
+        document.getElementById('email').textContent = data.email || 'N/A';
+      }
+    }
+    async function logout() {
+      await supabase.auth.signOut();
+      window.location.href = 'login.html';
+    }
+    loadProfile();
+  </script>
+</body>
+</html>
