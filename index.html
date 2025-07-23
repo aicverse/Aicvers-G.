@@ -2,14 +2,24 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>AICVerse Main Page</title>
-    <link rel="stylesheet" href="style.css">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>AICVerse Main Page</title>
+  <link rel="stylesheet" href="style.css">
 </head>
 <body>
+  <header>
     <h1>Welcome to AICVerse</h1>
-    <button onclick="startChat()">Enter INChat</button>
-    <script src="script.js"></script>
+    <nav>
+      <button onclick="navigate('dashboard')">Dashboard</button>
+      <button onclick="navigate('inchat')">INChat</button>
+      <button onclick="navigate('leaderboard')">Leaderboard</button>
+    </nav>
+  </header>
+  <main id="content">
+    <p>Select a feature above to begin.</p>
+  </main>
+  <footer>© 2025 AICVerse. All rights reserved.</footer>
+  <script src="script.js"></script>
 </body>
 </html>
